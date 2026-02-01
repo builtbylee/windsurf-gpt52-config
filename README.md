@@ -1,6 +1,15 @@
-# Windsurf GPT-5.2 Optimization Kit
+# GPT-5.2 Optimization Kit
 
-A comprehensive configuration kit that optimizes Windsurf IDE for GPT-5.2, bringing Claude Code-level capabilities to your development workflow.
+A comprehensive configuration kit that optimizes AI-powered IDEs for GPT-5.2, bringing Claude Code-level capabilities to your development workflow.
+
+## Supported IDEs
+
+| IDE | Support Level | Features |
+|-----|---------------|----------|
+| **Windsurf** | Full | Rules + Skills + Workflows |
+| **Cursor** | Partial | Rules only (.cursorrules) |
+| **VS Code + Copilot** | Partial | Instructions file |
+| **Other IDEs** | Basic | Copy rules manually |
 
 ## Why This Exists
 
@@ -9,281 +18,258 @@ GPT-5.2 is powerful but has known weaknesses compared to Claude Opus 4.5:
 - **Scope creep**: Tends to expand beyond requested tasks
 - **Verbosity**: Produces more code than necessary
 
-This configuration kit compensates for these weaknesses with explicit rules, structured workflows, and reusable skills.
+This configuration compensates for these weaknesses with explicit rules, structured workflows, and reusable skills.
 
 ## What's Included
 
-| Component | Description |
-|-----------|-------------|
-| **Global Rules** | Behavioral constraints and coding standards |
-| **7 Skills** | Reusable capabilities invoked with `@skill-name` |
-| **5 Workflows** | Multi-step processes invoked with `/workflow-name` |
-| **Install Script** | One-click installation |
+```
+gpt52-optimization-kit/
+├── global_rules.md           # Universal rules (works in any IDE)
+├── cursor/
+│   └── .cursorrules          # Cursor-specific format
+├── vscode/
+│   └── .github-copilot-instructions
+├── skills/                   # Windsurf only
+│   ├── build-android/
+│   ├── commit-changes/
+│   ├── plan-mode/
+│   ├── review-code/
+│   ├── update-docs/
+│   ├── workflow-full/
+│   └── workflow-quick/
+├── workflows/                # Windsurf only
+│   ├── build.md
+│   ├── commit.md
+│   ├── quick-fix.md
+│   ├── review.md
+│   └── workflow-protocol.md
+├── templates/
+│   ├── CLAUDE.md             # Project context template
+│   └── TECHNICAL_MANUAL.md   # Documentation template
+└── scripts/
+    ├── install.sh            # Windsurf installer
+    ├── uninstall.sh          # Windsurf uninstaller
+    └── install-cursor.sh     # Cursor installer
+```
+
+---
 
 ## Quick Install
 
+### Windsurf (Full Support)
+
 ```bash
-git clone https://github.com/builtbylee/windsurf-config.git
-cd windsurf-config
+git clone https://github.com/builtbylee/windsurf-gpt52-config.git
+cd windsurf-gpt52-config
 ./scripts/install.sh
 ```
 
 Then restart Windsurf.
 
-## Manual Install
+### Cursor
 
-1. Copy `global_rules.md` to `~/.codeium/windsurf/memories/`
-2. Copy `skills/*/` folders to `~/.codeium/windsurf/skills/`
-3. Copy `workflows/*.md` to `~/.codeium/windsurf/windsurf/workflows/`
-4. Restart Windsurf
+```bash
+git clone https://github.com/builtbylee/windsurf-gpt52-config.git
+cd windsurf-gpt52-config
+./scripts/install-cursor.sh
+```
+
+Or manually copy `cursor/.cursorrules` to your project root.
+
+### VS Code + GitHub Copilot
+
+Copy `vscode/.github-copilot-instructions` to your project root.
+
+### Other IDEs
+
+Copy the content from `global_rules.md` into your IDE's AI instructions/rules configuration.
 
 ---
 
-## How to Use
+## Windsurf Usage
 
 ### Workflows (Slash Commands)
 
 | Command | When to Use |
 |---------|-------------|
-| `/workflow-protocol` | Full 7-phase workflow for features and significant changes |
-| `/quick-fix` | Simple, obvious fixes (typos, small tweaks) |
-| `/build` | Build APK and deploy to Android device |
-| `/commit` | Git commit with documentation updates |
-| `/review` | Code review against the checklist |
-
-**Example:**
-```
-/workflow-protocol Add a logout button to the settings screen
-```
+| `/workflow-protocol` | Full 7-phase workflow for features |
+| `/quick-fix` | Simple, obvious fixes |
+| `/build` | Build APK and deploy to device |
+| `/commit` | Git commit with docs update |
+| `/review` | Code review checklist |
 
 ### Skills (@ Mentions)
 
 | Skill | Description |
 |-------|-------------|
-| `@build-android` | Build and install APK on device |
+| `@build-android` | Build and install APK |
 | `@commit-changes` | Git commit workflow |
-| `@plan-mode` | Create detailed implementation plan |
-| `@review-code` | Run code review checklist |
-| `@update-docs` | Update TECHNICAL_MANUAL.md and CLAUDE.md |
+| `@plan-mode` | Create implementation plan |
+| `@review-code` | Run review checklist |
+| `@update-docs` | Update documentation files |
 | `@workflow-full` | Complete 7-phase protocol |
 | `@workflow-quick` | Lightweight workflow |
 
-**Example:**
-```
-@plan-mode I need to add user authentication
-```
-
-### Natural Language Triggers
-
-The rules are configured to recognize natural phrases:
+### Natural Language
 
 | Say This | Triggers |
 |----------|----------|
-| "follow the workflow protocol" | Full 7-phase workflow |
+| "follow the workflow protocol" | Full workflow |
 | "build" or "test on device" | Build skill |
 | "commit" or "push" | Commit workflow |
 | "review the code" | Code review |
-| "quick fix" | Quick workflow |
 
 ---
 
 ## The Workflow Protocol
 
-When you say "follow the workflow protocol" or use `/workflow-protocol`, Cascade executes:
+When you say "follow the workflow protocol":
 
-### Phase 1: Plan
-- Read relevant files
-- Create detailed implementation plan
-- Wait for your approval before coding
-
-### Phase 2: Implement
-- Execute plan phase by phase
-- Show changes as they're made
-
-### Phase 3: Review
-- Run code review checklist
-- Check theme compatibility (light/dark mode)
-- Extra attention on async/concurrent code
-
-### Phase 4: Security
-- Validate inputs
-- Check for SQL injection, exposed secrets
-- Verify default values
-
-### Phase 5: Test
-- Build the app
-- Install on device
-- Wait for your confirmation
-
-### Phase 6: Document
-- Update TECHNICAL_MANUAL.md with version/changelog
-- Update CLAUDE.md with new patterns
-
-### Phase 7: Commit
-- Stage specific files
-- Commit with descriptive message
-- Push to remote
+1. **Plan** - Create detailed implementation plan, wait for approval
+2. **Implement** - Execute phase by phase
+3. **Review** - Code review checklist, theme compatibility
+4. **Security** - Validate inputs, check for vulnerabilities
+5. **Test** - Build and verify on device
+6. **Document** - Update TECHNICAL_MANUAL.md and CLAUDE.md
+7. **Commit** - Stage specific files, descriptive message, push
 
 ---
 
-## Global Rules Reference
+## Project Documentation Templates
+
+This kit includes templates for two recommended documentation files:
+
+### CLAUDE.md
+Project context file for AI assistants. Copy from `templates/CLAUDE.md`.
+
+### TECHNICAL_MANUAL.md
+Full project documentation. Copy from `templates/TECHNICAL_MANUAL.md`.
+
+---
+
+## Global Rules Summary
+
+### GPT-5.2 Weak Point Mitigations
+- **Concurrency**: Extra review on async/await code
+- **Scope creep**: Strict "only what was asked" constraint
+- **Verbosity**: "Minimal code changes only" instruction
 
 ### Core Principles
-- Keep solutions simple - only make requested changes
-- Prefer editing existing files over creating new ones
-- Never expand scope beyond the task
+- Keep solutions simple
+- Prefer editing existing files
+- Never expand scope
 - No time estimates
 
 ### Code Quality
-- TypeScript with strict typing (no `any`)
-- Functional components with hooks
-- Early returns for error handling
-- Delete unused code completely
+- TypeScript strict typing
+- Functional components
+- Early returns
+- Delete unused code
 
 ### React Native / Mobile
-- Use `TouchableOpacity` inside `ScrollView` (not `Pressable` on Android)
-- Wrap `Pressable` backgrounds in parent `View`
-- Always use theme tokens for colors
-- Test both light and dark mode
-- Dark mode buttons: `#333333` (not white)
+- TouchableOpacity in ScrollView
+- Theme tokens for colors
+- Light/dark mode testing
+- Dark buttons: #333333
 
 ### Git Protocol
-- Never amend unless explicitly requested
-- Never force push to main/master
-- Stage specific files (not `git add .`)
-- Descriptive commit messages focused on "why"
-
-### Documentation
-After every change:
-1. Update `TECHNICAL_MANUAL.md` with version and changelog
-2. Update `CLAUDE.md` with new patterns/features
+- Never amend unless asked
+- Never force push
+- Stage specific files
+- Descriptive messages
 
 ---
 
-## Project Documentation Files
+## IDE Feature Comparison
 
-This configuration expects two documentation files in your project:
-
-### CLAUDE.md
-Project context file for AI assistants. Include:
-- Project overview
-- Tech stack
-- Key files and their purposes
-- Important patterns and conventions
-- Recently completed work
-
-### TECHNICAL_MANUAL.md
-Full project documentation with:
-- Version history and changelog
-- Architecture documentation
-- Build and deployment instructions
-- API documentation
+| Feature | Windsurf | Cursor | VS Code |
+|---------|----------|--------|---------|
+| Global Rules | ✓ | ✓ | ✓ |
+| Skills (@mentions) | ✓ | ✗ | ✗ |
+| Workflows (/commands) | ✓ | ✗ | ✗ |
+| Auto-invocation | ✓ | ✗ | ✗ |
+| Natural language triggers | ✓ | Partial | Partial |
 
 ---
 
 ## Customization
 
-### Adding New Skills
+### Adding Windsurf Skills
 
 1. Create folder: `~/.codeium/windsurf/skills/my-skill/`
-2. Create `SKILL.md` with frontmatter:
+2. Create `SKILL.md`:
 
 ```markdown
 ---
 name: my-skill
-description: Brief description for Cascade to understand when to invoke
+description: Brief description
 ---
 
 ## Instructions
-
-[Your skill content here]
+[Your skill content]
 ```
 
 3. Restart Windsurf
-4. Invoke with `@my-skill`
 
-### Adding New Workflows
+### Adding Windsurf Workflows
 
 1. Create file: `~/.codeium/windsurf/windsurf/workflows/my-workflow.md`
-2. Add frontmatter:
+2. Add content:
 
 ```markdown
 ---
 auto_execution_mode: 0
-description: Brief description shown in workflow list
+description: Brief description
 ---
 
-[Your workflow steps here]
+[Your workflow steps]
 ```
 
 3. Restart Windsurf
-4. Invoke with `/my-workflow`
-
-### Modifying Global Rules
-
-Edit `~/.codeium/windsurf/memories/global_rules.md`
-
-Rules are processed as markdown, so use:
-- Bullet points for lists
-- Headers for sections
-- Code blocks for examples
 
 ---
 
 ## Troubleshooting
 
-### Skills/Workflows Not Appearing
-- Restart Windsurf after adding files
-- Check file is named exactly `SKILL.md` (case-sensitive)
-- Verify frontmatter has `name` and `description`
+### Skills/Workflows Not Appearing (Windsurf)
+- Restart Windsurf
+- Check file is named `SKILL.md` (case-sensitive)
+- Verify frontmatter format
 
-### Cascade Not Following Rules
-- Rules may conflict with memories - review Memories tab
-- Be explicit in your prompts: "following the global rules..."
-- Check for typos in rule file
-
-### Build Failing
-- Run `npx tsc --noEmit` to check TypeScript errors
-- Verify device connected: `adb devices`
-- Check gradle: `cd android && ./gradlew clean`
+### Rules Not Being Followed
+- Be explicit: "following the global rules..."
+- Check for conflicting memories
+- Simplify complex rules
 
 ---
 
-## Comparison: GPT-5.2 vs Claude Opus 4.5
+## Benchmark Context
 
 | Aspect | GPT-5.2 | Claude Opus 4.5 |
 |--------|---------|-----------------|
-| SWE-bench Verified | 80.0% | **80.9%** |
+| SWE-bench | 80.0% | **80.9%** |
 | Terminal-Bench | 47.6% | **59.3%** |
-| ARC-AGI-2 (Reasoning) | **52.9%** | 37.6% |
-| AIME 2025 (Math) | **100%** | 92.8% |
-| Security Issues/MLOC | **16** | ~25 |
-| Concurrency Issues/MLOC | 470 | ~80 |
+| ARC-AGI-2 | **52.9%** | 37.6% |
+| Math (AIME) | **100%** | 92.8% |
+| Concurrency bugs/MLOC | 470 | ~80 |
 
-This configuration compensates for GPT-5.2's weaknesses (concurrency, scope creep) while leveraging its strengths (security, reasoning).
+This configuration compensates for GPT-5.2's weaknesses while leveraging its strengths.
 
 ---
 
 ## Contributing
 
-PRs welcome! Please:
-1. Test changes with GPT-5.2 in Windsurf
-2. Verify both light and dark mode (for UI-related rules)
-3. Update this README if adding new skills/workflows
-
----
+PRs welcome! Please test with GPT-5.2 before submitting.
 
 ## License
 
-MIT License - Use freely, modify as needed.
-
----
+MIT License
 
 ## Credits
 
-Configuration developed through iterative testing with Claude Code (Opus 4.5) and Windsurf (GPT-5.2).
+Developed with Claude Code (Opus 4.5) and Windsurf (GPT-5.2).
 
-Benchmark data sourced from:
-- [OpenAI GPT-5.2 Benchmarks](https://openai.com/index/introducing-gpt-5-2/)
-- [Sonar Code Quality Analysis](https://www.sonarsource.com/blog/new-data-on-code-quality-gpt-5-2-high-opus-4-5-gemini-3-and-more/)
-- [Windsurf Documentation](https://docs.windsurf.com/)
+Sources:
+- [OpenAI GPT-5.2](https://openai.com/index/introducing-gpt-5-2/)
+- [Sonar Code Quality](https://www.sonarsource.com/blog/new-data-on-code-quality-gpt-5-2-high-opus-4-5-gemini-3-and-more/)
+- [Windsurf Docs](https://docs.windsurf.com/)

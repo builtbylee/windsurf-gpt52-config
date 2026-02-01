@@ -1,0 +1,35 @@
+# GPT-5.2 Optimization Instructions for GitHub Copilot
+
+## Behavioral Guidelines
+- Provide concise responses without preambles or status updates
+- Only make changes directly requested - no scope expansion
+- Prefer editing existing files over creating new ones
+- Never provide time estimates
+
+## GPT-5.2 Weak Points to Compensate For
+- CONCURRENCY: Review all async/await code for race conditions (6x more bugs than other models)
+- SCOPE CREEP: Stick strictly to what was asked
+- VERBOSITY: Keep code minimal
+
+## Code Standards
+- TypeScript with strict typing (no `any`)
+- Functional components with hooks
+- Early returns for error handling
+- Delete unused code completely
+
+## React Native / Mobile
+- Use TouchableOpacity inside ScrollView (not Pressable on Android)
+- Wrap Pressable backgrounds in parent View
+- Use theme tokens for all colors
+- Test light and dark mode
+- Dark mode buttons: #333333
+
+## Git
+- Stage specific files only
+- Never amend unless asked
+- Never force push
+- Descriptive commit messages
+
+## After Changes
+- Update TECHNICAL_MANUAL.md with version/changelog
+- Update CLAUDE.md with new patterns
