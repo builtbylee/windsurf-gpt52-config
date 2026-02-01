@@ -66,6 +66,61 @@ cd windsurf-gpt52-config
 
 Then restart Windsurf.
 
+---
+
+## Choosing the Right GPT-5.2 Model
+
+Windsurf offers many GPT-5.2 variants. Here's how to choose:
+
+### Model Types
+
+| Model | Best For | Behavior |
+|-------|----------|----------|
+| **GPT 5.2 Codex** | Coding tasks | Action-oriented, faster completion |
+| **GPT 5.2** (general) | Complex reasoning | Thinks deeper, may run longer |
+
+### Reasoning Levels
+
+| Level | Speed | Credits | Use For |
+|-------|-------|---------|---------|
+| **None/Low** | Instant | 1 | Simple queries (not recommended for coding) |
+| **Medium** | 30-90 sec | 2 | Quick fixes, simple changes |
+| **High** | 3-10 min | 3 | Features, refactors, most tasks |
+| **xHigh** | 10-30+ min | 6-8 | PhD-level problems (rarely needed) |
+
+### Standard vs Fast
+
+| Variant | Credits | When to Use |
+|---------|---------|-------------|
+| **Standard** | 1x | Default - sufficient for most work |
+| **Fast** | 2x | Parallel tasks, impatience |
+
+### Recommended Models (3 to Use Daily)
+
+| Model | Credits | Use For | % of Work |
+|-------|---------|---------|-----------|
+| **GPT 5.2 Codex High** | 3 | Primary - features, UI, bugs, refactors | 80% |
+| **GPT 5.2 Codex Medium** | 2 | Quick fixes, typos, simple styling | 15% |
+| **GPT 5.2 High** | 3 | When stuck, architecture, deep debugging | 5% |
+
+### Quick Reference
+
+| Task | Model |
+|------|-------|
+| "Add a button" | Codex High |
+| "Fix this typo" | Codex Medium |
+| "Refactor authentication" | Codex High |
+| "Why isn't this working?" | GPT 5.2 High |
+| "Follow workflow protocol" | Codex High |
+
+### Models to Avoid
+
+- **xHigh** - Overkill, 3x slower, 3x credits
+- **Fast variants** - 2x cost, rarely needed
+- **Low/None** - May miss issues
+
+---
+
 ### Cursor
 
 ```bash
