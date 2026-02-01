@@ -23,7 +23,7 @@ This configuration kit compensates for these weaknesses with explicit rules, str
 ## Quick Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/windsurf-config.git
+git clone https://github.com/builtbylee/windsurf-config.git
 cd windsurf-config
 ./scripts/install.sh
 ```
