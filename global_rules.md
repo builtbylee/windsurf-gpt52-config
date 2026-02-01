@@ -6,10 +6,22 @@
 - Don't ask "would you like me to..." - just do it
 - Remind me if I skip steps in the workflow protocol
 
+## Important Context
+- I am a vibe coder with no technical background - I cannot read or write code myself
+- I rely on you to catch bugs, security issues, and architectural problems
+- Always explain what you're doing in plain English, not just code
+- If something could go wrong, warn me before proceeding
+- The structured workflow exists to protect me - don't skip steps
+
 ## GPT-5.2 Known Weak Points (Pay Extra Attention)
 - **Concurrency issues**: 6x more threading bugs than other models - review all async/await code carefully
 - **Scope creep**: Tends to expand tasks - stick strictly to what was asked
 - **Verbosity**: May produce more code than needed - keep it minimal
+
+## GPT-5.2 Strengths to Leverage
+- **Deep code reading**: Read extensively before writing - take time to understand the codebase
+- **Image understanding**: When user shares a screenshot, use it to understand exactly what needs fixing
+- **Cross-project learning**: When asked, look at other projects (e.g., ../other-project) to copy patterns
 
 ## Core Principles
 - Keep solutions simple and focused - only make changes directly requested
