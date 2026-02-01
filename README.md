@@ -99,19 +99,21 @@ Windsurf offers many GPT-5.2 variants. Here's how to choose:
 
 | Model | Credits | Use For | % of Work |
 |-------|---------|---------|-----------|
-| **GPT 5.2 Codex High** | 3 | Primary - features, UI, bugs, refactors | 80% |
-| **GPT 5.2 Codex Medium** | 2 | Quick fixes, typos, simple styling | 15% |
-| **GPT 5.2 High** | 3 | When stuck, architecture, deep debugging | 5% |
+| **GPT 5.2 Codex Medium** | 2 | Simple tasks - buttons, styling, typos, quick fixes | 60% |
+| **GPT 5.2 Codex High** | 3 | Complex tasks - multi-file, refactors, new features with logic | 35% |
+| **GPT 5.2 High** | 3 | When stuck, architecture decisions, deep debugging | 5% |
 
 ### Quick Reference
 
-| Task | Model |
-|------|-------|
-| "Add a button" | Codex High |
-| "Fix this typo" | Codex Medium |
-| "Refactor authentication" | Codex High |
-| "Why isn't this working?" | GPT 5.2 High |
-| "Follow workflow protocol" | Codex High |
+| Task | Model | Why |
+|------|-------|-----|
+| "Fix this typo" | Codex Medium | Simple, obvious |
+| "Add a button" | Codex Medium | Straightforward UI |
+| "Change button color" | Codex Medium | Simple styling |
+| "Add form validation" | Codex High | Multiple edge cases |
+| "Refactor authentication" | Codex High | Complex, multi-file |
+| "Why isn't this working?" | GPT 5.2 High | Needs deep reasoning |
+| "Follow workflow protocol" | Codex High | Multi-step process |
 
 ### Models to Avoid
 
