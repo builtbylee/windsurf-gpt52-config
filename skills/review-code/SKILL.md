@@ -1,7 +1,6 @@
----
-name: review-code
-description: Code review checklist covering scope, quality, UI/theme, security, React Native, and concurrency
----
+# Review Code
+
+Code review checklist covering scope, quality, UI/theme, security, React Native, and concurrency.
 
 ## Review Checklist
 
@@ -23,11 +22,15 @@ description: Code review checklist covering scope, quality, UI/theme, security, 
 - [ ] Dark mode buttons use #333333, not white
 - [ ] TouchableOpacity used inside ScrollView (Android)
 
-### Security
+### Security - CRITICAL
 - [ ] Inputs validated at boundaries
 - [ ] No SQL injection (parameterized queries)
-- [ ] No sensitive data exposed
-- [ ] No hardcoded secrets
+- [ ] No hardcoded secrets (API keys, passwords, tokens in code)
+- [ ] No console.log or print statements that output secrets
+- [ ] No secrets in comments or documentation
+- [ ] Environment variables accessed via process.env, not hardcoded
+- [ ] If .env files were read, their VALUES were never displayed in output
+- [ ] No sensitive data in error messages
 
 ### React Native
 - [ ] Pressable wrapped in View for Android backgrounds
@@ -35,7 +38,7 @@ description: Code review checklist covering scope, quality, UI/theme, security, 
 - [ ] Proper keyboard handling if inputs present
 - [ ] Safe area handling for notches
 
-### Concurrency (GPT-5.2 weak point - extra attention)
+### Concurrency (extra attention required)
 - [ ] Async/await used correctly
 - [ ] No race conditions
 - [ ] Proper cleanup in useEffect
@@ -43,3 +46,6 @@ description: Code review checklist covering scope, quality, UI/theme, security, 
 
 ## Output
 Provide summary of issues found or confirm "Review passed"
+
+If ANY security issue found, flag it prominently:
+**SECURITY ISSUE**: [description]

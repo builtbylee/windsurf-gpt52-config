@@ -29,6 +29,7 @@ You are performing a thorough code review using the established review checklist
 - [ ] No SQL injection (parameterized queries)
 - [ ] No sensitive data exposed
 - [ ] No hardcoded secrets
+- [ ] No .env*, credentials, or secret files accessed during exploration
 
 ### React Native
 - [ ] Pressable wrapped in View for Android backgrounds
